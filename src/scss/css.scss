@@ -1,0 +1,17 @@
+h4, h2, p {
+  margin-bottom: 5px;
+}
+
+.row {
+  background: #d6ecfa;
+  margin-bottom: 15px;
+}
+.col > .box {
+  background: #1779ba;
+  color: white;
+  text-align: center;
+  padding: 7px;
+}
+.col:nth-child(odd) > .box {
+  background: #37a0e6;
+}

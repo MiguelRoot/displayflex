@@ -1,0 +1,24 @@
+$font-family: 'Lato', Verdana, Geneva, Tahoma, sans-serif;
+$font-size: 16px;
+
+$grid-columns: 12 !default;
+$grid-col: 8 !default;
+
+$gap-col: 0.5rem !default;
+$gap-container: 0.5rem 2rem 3rem !default;
+
+$breakpoints: (
+  "sm": 0,
+  "md": 45rem,
+  "lg": 65rem,
+  "xl": 90rem
+) !default;
+
+$gap-x: (
+  "block": 1.2rem
+) !default;
+
+
+$gap-y: (
+  "block": 1.2rem 2rem
+) !default;

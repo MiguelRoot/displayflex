@@ -1,0 +1,501 @@
+html {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+    // overflow-y: scroll;
+  }
+  
+  // [class^="mybox close"] {
+  //   color:  #fff;
+  // }
+  
+  *,
+  *:after,
+  *:before {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+  }
+  
+  // * {
+  //   outline: 1px solid red;
+  // }
+  
+  //// grid basic
+  
+  // [class^="mybox close"] {
+  //   color:  #fff;
+  // }
+  
+  .box {
+    overflow-x: hidden;
+  }
+  
+  
+  // .row.myblock {
+  //   > .col[class*="-1"] {
+  //     margin-right: $mymargin;
+  //     margin-left: $mymargin;
+  //     width: calc(10% - #{$mymargin * 2});
+  //   }
+  //   > .col[class*="-11"] {
+  //     margin-right: $mymargin;
+  //     margin-left: $mymargin;
+  //     width: calc(90% - #{$mymargin * 2});
+  //   }
+  //   > .col[class*="-12"] {
+  //     margin-right: $mymargin;
+  //     margin-left: $mymargin;
+  //     width: calc(90% - #{$mymargin * 2});
+  //   }
+  // }
+  
+  // @mixin auto-margin($am-name, $am-margin) {
+  //   .row.mg-x--#{$am-name} {
+  //     > .col {
+  //       margin-left: $am-margin;
+  //       margin-right: $am-margin;
+  //     }
+  //   }
+  //   @for $i from 1 to 12 {
+  //     .row.mg-x--#{$am-name} {
+  //       > .col[class*="-#{i}"] {
+  //         width: calc(#{100% / $i} - #{$am-margin * 2});
+  //       }
+  //     }
+  //   }
+  // }
+  
+  // @function gap-list() {
+  //   @if (length($gap-col) <= 1) {
+  //     $gap-lists: $gap-col $gap-col;
+  //     @return $gap-lists;
+  //   } @else if (length($gap-col)) {
+  //   }
+  // }
+  
+  
+  // numero de row col
+  $grid-columns: 12 !default; // number column
+  $grid-col: 8 !default; // number column row
+  
+  /////// gap margenes 
+  $gap-col: 0.5rem !default;
+  $gap-container: 0.5rem 2rem 3rem !default;
+  
+  $breakpoints: (
+    "sm": 0,
+    "md": 45rem,
+    "lg": 65rem,
+    "xl": 90rem
+  ) !default;
+  
+  
+  
+  
+  //// añadir mas gap en col
+  $gap-x: (
+    "block": 1.2rem
+  ) !default;
+  
+  
+  $gap-y: (
+    "block": 1.2rem 2rem
+  ) !default;
+  
+  
+  // functions
+  @function size-gap($fgap) {
+    @if (length($fgap) == 1) {
+      @return $fgap;
+    } @else if (length($fgap) < length($breakpoints)) {
+      $nsgap: $fgap !default;
+      @for $i from length($fgap) to length($breakpoints) {
+        $nsgap2: append($nsgap, nth($fgap, -1));
+        $nsgap: $nsgap2;
+      }
+      @return $nsgap;
+    } @else {
+      @return $fgap;
+    }
+  }
+  
+  @function index-to-key($itk-index) {
+    $keys: map-keys($breakpoints);
+    @return nth($keys, $itk-index);
+  }
+  
+  /// mixin
+  @mixin mq($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+      $sizes: map-get($breakpoints, $breakpoint);
+      @media only screen and (min-width: nth($sizes, 1)) {
+        @content;
+      }
+    } @else if(type-of($breakpoint) == number) {
+      @media only screen and (min-width: $breakpoint) {
+        @content;
+      }
+    }
+  }
+  
+  // @function margin-list($ml-list, $ml-index) {
+  //   @if ($ml-index <= length($ml-list)) {
+  //     @return nth($ml-list, $ml-index);
+  //   } @else {
+  //     @return nth($ml-list, -1);
+  //   }
+  // }
+  
+  .container {
+    $container-max: map-get($breakpoints, index-to-key(-1));
+    margin-right: auto;
+    margin-left: auto;
+    overflow-x: hidden;
+    max-width: nth($container-max, 1);
+    @if length($gap-container) == 1 {
+      padding-right: $gap-container;
+      padding-left: $gap-container;
+    }
+  }
+  
+  
+  .col {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+  
+    // display: block;
+    // flex-basis: 0;
+    // flex-grow: 1;
+    // flex-shrink: 1;
+    // width: 100%;
+  }
+  
+  .row {
+    &.shrink > .col {
+      flex: 1 1 auto;
+      max-width: none;
+      width: auto;
+    }
+  }
+  
+  @if length($gap-col) == 1 {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      &.gap-x.nogap {
+        margin-left: -$gap-col;
+        margin-right: -$gap-col;
+      }
+      &.gap-x {
+        & > .col {
+          padding-right: $gap-col;
+          padding-left: $gap-col;
+        }
+      }
+      &.gap-y {
+        & > .col {
+          padding-top: $gap-col;
+          padding-bottom: $gap-col;
+        }
+      }
+    }
+  }
+  
+  @each $name, $mygap in $gap-x {
+    @if length($mygap) == 1 {
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        &.gap-x--#{$name}.nogap {
+          margin-left: -$gap-col;
+          margin-right: -$gap-col;
+        }
+        &.gap-x--#{$name} {
+          & > .col {
+            padding-right: $gap-col;
+            padding-left: $gap-col;
+          }
+        }
+      }
+    }
+  }
+  
+  // @function maptwo($list) {
+  //   @if length($list) == 1 {
+  //     $mylist: nth($list, 1) nth($list, 1);
+  //     @return $mylist;
+  //   } @else if length($list) == 2 {
+  //     @return $list;
+  //   } @else {
+  //     $mylist: 0.9375rem 0.9375rem;
+  //     @return $mylist;
+  //   }
+  // }
+  
+  // @each $index, $margin in $margin-x {
+  //   $name: $index;
+  
+  //   $size: maptwo($margin);
+  //   $val1: nth($size, 1);
+  //   $val2: nth($size, 2);
+  
+  //   .mg-x--#{$name} {
+  //     display: #{length($size)};
+  //     & > .col {
+  //       margin-right: $val1;
+  //       margin-left: $val2;
+  //     }
+  //     &.nogap {
+  //       margin-right: -$val1;
+  //       margin-left: -$val2;
+  //     }
+  //   }
+  // }
+  
+  // .row {
+  //   @each $index, $padding in $padding-x {
+  //     $name: $index;
+  
+  //     &.pd-x-#{$name} {
+  //       & > .col {
+  //         padding: #{$padding};
+  //       }
+  //     }
+  //   }
+  // }
+  
+  // @each $index, $background in $backgrounds {
+  //   $name: $index;
+  //   $back: $background;
+  
+  //   .bg-#{$name} {
+  //     background-color: #{$back};
+  //   }
+  // }
+  
+  
+  @each $index, $breakpoint in $breakpoints {
+    $name: $index;
+    $size: nth($breakpoint, 1);
+    // $gap-col: size-gap($gap-col);
+    // $gap-container: size-gap($gap-container);
+  
+    $counter: 1 !default;
+  
+    @include mq($name) {
+      .container {
+        @if $size > 0 {
+          max-width: $size;
+        }
+        @if length($gap-container) >= $counter and length($gap-container) > 1 {
+          padding-left: nth($gap-container, $counter);
+          padding-right: nth($gap-container, $counter);
+        }
+      }
+  
+  
+      @if length($gap-col) >= $counter and length($gap-col) > 1 {
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          &.gap-x.nogap {
+            display: $counter;
+            margin-left: -#{nth($gap-col, $counter)};
+            margin-right: -#{nth($gap-col, $counter)};
+          }
+          &.gap-x {
+            & > .col {
+              padding-right: nth($gap-col, $counter);
+              padding-left: nth($gap-col, $counter);
+            }
+          }
+          &.gap-y {
+            & > .col {
+              padding-top: nth($gap-col, $counter);
+              padding-bottom: nth($gap-col, $counter);
+            }
+          }
+        }
+      }
+  
+      @each $name, $mygap in $gap-x {
+  
+        @if length($mygap) >= $counter and length($mygap) > 1 {
+          // $fgap: size-gap($mygap);
+          .row {
+            display: flex;
+            flex-wrap: wrap;
+            &.gap-x--#{$name}.nogap {
+              margin-left: -#{nth($mygap, $counter)};
+              margin-right: -#{nth($mygap, $counter)};
+            }
+            &.gap-x--#{$name} {
+              & > .col {
+                padding-right: nth($mygap, $counter);
+                padding-left: nth($mygap, $counter);
+              }
+            }
+          }
+        }
+      }
+  
+      $counter: ($counter + 1);
+  
+      // .row {
+      //   &.nogap {
+      //     margin-left: -$margin-gap;
+      //     margin-right: -$margin-gap;
+      //   }
+      //   &.pd-x {
+      //     & > .col {
+      //       padding-right: $margin-gap;
+      //       padding-left: $margin-gap;
+      //     }
+      //   }
+      //   &.pd-y {
+      //     & > .col {
+      //       padding-top: $margin-gap;
+      //       padding-bottom: $margin-gap;
+      //     }
+      //   }
+      //   &.mg-x {
+      //     & > .col {
+      //       display: $margin-gap;
+      //       margin-left: $margin-gap;
+      //       margin-right: $margin-gap;
+      //       // width: calc(100% - #{$margin-gap * 2});
+      //     }
+      //   }
+      //   &.mg-y {
+      //     & > .col {
+      //       margin-top: $margin-gap;
+      //       margin-bottom: $margin-gap;
+      //     }
+      //   }
+      // }
+  
+      @for $i from 1 through $grid-columns {
+        .#{$name}-#{$i} {
+          width: (100% / $grid-columns * $i);
+        }
+  
+        // .row.mg-x > .#{$name}-#{$i} {
+        //   margin-left: $gap-col;
+        //   margin-right: $gap-col;
+        //   width: calc(#{100% / $grid-columns * $i} - #{$gap-col * 2});
+        // }
+  
+        // @each $index, $margin in $margin-x {
+        //   $namemg: $index;
+        //   $size: $margin;
+        //   $val: nth($margin, 1);
+  
+        //   .row.mg-x--#{$namemg} {
+        //     & > .#{$name}-#{$i} {
+        //       width: calc(#{100% / $grid-columns * $i} - #{$val * 2});
+        //     }
+        //   }
+        // }
+      }
+  
+      @for $i from 1 through $grid-col {
+        .row {
+          &.#{$name}-up-#{$i} {
+            & > .col {
+              width: (100% / $i);
+            }
+          }
+        }
+        // .row {
+        //   &.mg-x.#{$name}-up-#{$i} {
+        //     & > .col {
+        //       margin-left: $gap-col;
+        //       margin-right: $gap-col;
+  
+        //       width: calc(#{100% / $i} - #{$gap-col * 2});
+        //     }
+        //   }
+        // }
+  
+        // @each $index, $margin in $margin-x {
+        //   $namemg: $index;
+        //   $size: $margin;
+        //   $val: nth($margin, 1);
+  
+        //   .row.mg-x--#{$namemg}.#{$name}-up-#{$i} {
+        //     & > .col {
+        //       flex-basis: calc(#{100% / $i} - #{$val * 2});
+        //       max-width: calc(#{100% / $i} - #{$val * 2});
+        //     }
+        //   }
+        // }
+      }
+  
+      .#{$name}-start {
+        justify-content: start;
+        text-align: left;
+      }
+  
+      .#{$name}-center {
+        justify-content: center;
+        text-align: center;
+      }
+  
+      .#{$name}-end {
+        justify-content: flex-end;
+        text-align: right;
+      }
+  
+      .#{$name}-around {
+        justify-content: space-around;
+      }
+  
+      .#{$name}-between {
+        justify-content: space-between;
+      }
+  
+      .#{$name}-top {
+        align-items: start;
+      }
+  
+      .#{$name}-middle {
+        align-items: center;
+      }
+  
+      .#{$name}-bottom {
+        align-items: end;
+      }
+  
+      .#{$name}-auto {
+        flex: 0 0 auto;
+        max-width: none;
+        width: auto;
+      }
+  
+      .#{$name}-shrink {
+        flex: 1 1 auto;
+        max-width: none;
+        width: auto;
+      }
+  
+      .hide-#{$name} {
+        display: none;
+      }
+  
+      .show-#{$name} {
+        display: block;
+      }
+    }
+  }
+  
+  
+  
+  .container.fluid {
+    $container-max: map-get($breakpoints, index-to-key(-1));
+    max-width: nth($container-max, 1);
+    width: 100%;
+  }
+  

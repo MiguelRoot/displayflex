@@ -1,0 +1,19 @@
+@function size-gap($fgap) {
+  @if (length($fgap) == 1) {
+    @return $fgap;
+  } @else if (length($fgap) < length($breakpoints)) {
+    $nsgap: $fgap !default;
+    @for $i from length($fgap) to length($breakpoints) {
+      $nsgap2: append($nsgap, nth($fgap, -1));
+      $nsgap: $nsgap2;
+    }
+    @return $nsgap;
+  } @else {
+    @return $fgap;
+  }
+}
+
+@function index-to-key($itk-index) {
+  $keys: map-keys($breakpoints);
+  @return nth($keys, $itk-index);
+}
