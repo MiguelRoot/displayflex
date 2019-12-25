@@ -1,14 +1,14 @@
 {
-  "name": "webpackv1",
+  "name": "flexgrid",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "grid layout scss",
+  "main": "src/main.scss",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "npm run build && webpack-dev-server --config webpack.dev.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["flexbox", "grid", "layout", "scss"],
+  "author": "killki",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.4",
