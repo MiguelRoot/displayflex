@@ -1,6 +1,6 @@
 {
-  "name": "flexgrid",
-  "version": "1.0.0",
+  "name": "displayflex",
+  "version": "1.0.1",
   "description": "grid layout scss",
   "main": "src/main.scss",
   "scripts": {

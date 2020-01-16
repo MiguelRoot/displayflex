@@ -2,7 +2,7 @@
   $container-max: map-get($breakpoints, index-to-key(-1));
   margin-right: auto;
   margin-left: auto;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   max-width: nth($container-max, 1);
   @if length($gap-container) == 1 {
     padding-right: $gap-container;
