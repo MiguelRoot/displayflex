@@ -1,6 +1,6 @@
 {
   "name": "displayflex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "grid layout scss",
   "main": "src/main.scss",
   "scripts": {

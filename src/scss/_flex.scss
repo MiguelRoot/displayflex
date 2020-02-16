@@ -78,7 +78,7 @@
 
   $counter: 1 !default;
 
-  @include mq($name) {
+  @include from($name) {
     .container {
       @if $size > 0 {
         max-width: $size;

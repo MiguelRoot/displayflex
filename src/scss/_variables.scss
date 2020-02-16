@@ -22,3 +22,66 @@ $gap-x: (
 $gap-y: (
   "block": 1.2rem 2rem
 ) !default;
+
+
+// $config: (
+//   'rem': 16px,
+//   'dev': false,
+//   'container': 1200px,
+//   'columns': 12,
+//   'breakpoints': (
+//     "xs": 0,
+//     "sm": rem(769px)
+//     "md": rem(1024px),
+//     "lg": rem(1216px),
+//     "xl": rem(1408px)
+//     ),
+//     'gap': 1.2rem,
+// ) !default;
+
+// // @include row(300px 1fr 300px);
+// .container {
+//   margin-left: auto;
+//   margin-right: auto;
+//   padding-left: 15px;
+//   padding-right: 15px
+// }
+
+// .container:after {
+//   content: "";
+//   display: table;
+//   clear: both
+// }
+
+@media(min-width: 544px) {
+  .container {
+      max-width:576px
+  }
+}
+
+@media(min-width: 768px) {
+  .container {
+      max-width:720px
+  }
+}
+
+@media(min-width: 992px) {
+  .container {
+      max-width:940px
+  }
+}
+
+@media(min-width: 1200px) {
+  .container {
+      max-width:1140px
+  }
+}
+
+// container from
+// 48 * 20 + 64
+// 48 * 24 + 64
+// 48 * 28 + 64
+
+// 960 1024 = 64 - 20
+// 1152 1216 64 - 24
+// 1344 1408 64 - 28

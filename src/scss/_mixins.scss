@@ -1,4 +1,4 @@
-@mixin mq($breakpoint) {
+@mixin from($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $sizes: map-get($breakpoints, $breakpoint);
     @media only screen and (min-width: nth($sizes, 1)) {
