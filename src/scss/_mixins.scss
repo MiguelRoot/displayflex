@@ -1,12 +1,68 @@
+/// mixin
+@mixin row($gap, $sizes: false) {
+  $list-sizes: if($sizes, $sizes, $gap);
+  $list-total: length($list-sizes);
+  $fr-total: count-unit($list-sizes, "fr");
+  $sum-total: sum($list-sizes, "px");
+
+  $option: (
+      gap: "p",
+      gap-x: "p-x",
+      gap-y: "p-y",
+      nogap: "nogap"
+  );
+
+  @for $i from 1 through length($list-sizes) {
+      @if (str-index(nth($list-sizes, $i) + "", "fr")) {
+          & > .col:nth-child(#{$list-total}n + #{$i}) {
+              width: calc(#{100% / $fr-total} - #{$sum-total / $fr-total});
+          }
+      } @else {
+          & > .col:nth-child(#{$list-total}n + #{$i}) {
+              width: nth($list-sizes, $i);
+          }
+      }
+  }
+
+  @if ($sizes) {
+      @for $i from 1 through length($gap) {
+          @if map-has-key($option, nth($gap, $i)) {
+              @if map-get($option, nth($gap, $i)) == "p" {
+                  & > .col {
+                      padding: nth($gap, $i + 1);
+                  }
+              } @else if map-get($option, nth($gap, $i)) == "p-x" {
+                  & > .col {
+                      padding-left: nth($gap, $i + 1);
+                      padding-right: nth($gap, $i + 1);
+                  }
+              } @else if map-get($option, nth($gap, $i)) == "p-y" {
+                  & > .col {
+                      padding-top: nth($gap, $i + 1);
+                      padding-bottom: nth($gap, $i + 1);
+                  }
+              } @else if map-get($option, nth($gap, $i)) == "nogap" {
+                  & > .col:nth-child(#{$list-total}n + 1) {
+                      padding-left: 0;
+                  }
+                  & > .col:nth-child(#{$list-total}n + #{$list-total}) {
+                      padding-right: 0;
+                  }
+              }
+          }
+      }
+  }
+}
+
 @mixin from($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
-    $sizes: map-get($breakpoints, $breakpoint);
-    @media only screen and (min-width: nth($sizes, 1)) {
-      @content;
-    }
+      $sizes: map-get($breakpoints, $breakpoint);
+      @media only screen and (min-width: nth($sizes, 1)) {
+          @content;
+      }
   } @else if(type-of($breakpoint) == number) {
-    @media only screen and (min-width: $breakpoint) {
-      @content;
-    }
+      @media only screen and (min-width: $breakpoint) {
+          @content;
+      }
   }
 }

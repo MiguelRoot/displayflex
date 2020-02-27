@@ -2,191 +2,284 @@ extends template
 
 block main
   h1.sm-center FlexGrid
-  .container.fluid
-    h2.sm-center Horizontal grid
-    .row
-      .col
-        .box col
-      .col.md-12
-        .box col / 12
-  .container.fluid
-    h2.sm-center Responsive
-    .row
-      .col.md-3.lg-5
-        .box col 3/5
-      .col.md-4.lg-4
-        .box col 4/4
-      .col.md-5.lg-3
-        .box col 5/3
-  .container.fluid
-    h2.sm-center Gap
-    p gap-x
-    .row.gap-x
-      .col.md-6.xl-4
-        .box  col 12/6/4
-      .col.md-6.xl-8
-        .box  col 12/6/8
-    p gap-y
-    .row.gap-y
-      .col.md-6.lg-4
-        .box col 6/4
-      .col.md-6.lg-8
-        .box col 6/8
-  .container.fluid
-    h2.sm-center Auto sizing
-    p auto shrink
-    .row
-      .col.sm-4
-        .box 4
-      .col.sm-auto
-        .box auto
-      .col.sm-shrink
-        .box shrink
-  .container.fluid
-    h2.sm-center Responsive Adjustments
-    p shrink
-    .row.shrink
-      .col
-        .box One
-      .col
-        .box Two
-      .col
-        .box Three
-      .col
-        .box Four
-      .col
-        .box Five
-      .col
-        .box Six
-  .container.fluid
-    h2.sm-center Block Grids
-    p up-1 up-4 up-6
-    .row.sm-up-1.md-up-4.lg-up-6.gap-x
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-      .col
-        .box col
-  .container.fluid
-    h2.sm-center Alignment
-    p start
-    .row.sm-start
-      .col.sm-4
-        .box col
-    p center
-    .row.sm-center
-      .col.sm-4
-        .box col
-    p end
-    .row.sm-end
-      .col.sm-4
-        .box col
-    p end center start
-    .row.sm-end.md-center.lg-start
-      .col.sm-4
-        .box col
-    p top
-    .row.sm-top
-      .col.sm-6
-        .box(style="height: 100px;") col
-      .col.sm-6
-        .box col
-    p middle
-    .row.sm-middle
-      .col.sm-6
-        .box(style="height: 100px;") col
-      .col.sm-6
-        .box col
-    p bottom
-    .row.sm-bottom
-      .col.sm-6
-        .box(style="height: 100px;") col
-      .col.sm-6
-        .box col
-    p bottom middle top
-    .row.md-bottom.lg-middle.xl-top
-      .col.sm-6
-        .box(style="height: 100px;") col
-      .col.sm-6
-        .box col
-    h2.sm-center Distribution
-    p around
-    .row.sm-around
-      .col.sm-3
-        .box col
-      .col.sm-3
-        .box col
-      .col.sm-3
-        .box col
-    p between
-    .row.sm-between
-      .col.sm-3
-        .box col
-      .col.sm-3
-        .box col
-      .col.sm-3
-        .box col
-    h2.sm-center Reordering
-    p first
-    .row.shrink
-      .col
-        .box 1
-      .col
-        .box 2
-      .col
-        .box 3
-      .col.sm-first
-        .box 4
-    p last
-    .row.shrink
-      .col.sm-last
-        .box 1
-      .col
-        .box 2
-      .col
-        .box 3
-      .col
-        .box 4
-    h2.sm-center Reversing
-    p reverse
-    .row.shrink.lg-reverse
-      .col
-        .box 1
-      .col
-        .box 2
-      .col
-        .box 3
-      .col
-        .box 4
-    h2.sm-center Display elements
-    p hiding and show elements
-    .row.shrink
-      .col
-        .box 1
-      .col
-        .box 2
-      .col
-        .box 3
-      .col.md-hide
-        .box |||
-      .col.md-show
-        .box X
+  main.main
+
+    .container.fluid
+      h2 Configuration
+      p fully configurable
+      pre.prettyprint.
+        $config: (
+          "dev": false,
+          "rem": 16px,
+          "columns": 12,
+          "breakpoints": (
+            "xs": 0,
+            "sm": 769px,
+            "md": 1024px,
+            "lg": 1216px,
+            "xl": 1408px
+          ),
+          "container-gap": 5px 15px 30px,
+          "col-gap": 5px 10px 40px
+        );
+
+      h2 Horizontal grid
+      code .col 
+      | full width cell
+      .row
+        .col
+          .box
+        .col.md-12
+          .box 
+      pre.prettyprint.
+        &lt;div class="row">
+          &lt;div class="col">
+            &lt;div class="box">Horizontal grid&lt;/div>
+          &lt;/div>
+
+          &lt;div class="col md-12">
+            &lt;div class="box">Horizontal grid&lt;/div>
+          &lt;/div>
+        &lt;/div>
+
+    .container.fluid
+      h2 Responsive
+      .row
+        .col.sm-3.lg-5
+          .box
+        .col.sm-4.lg-4
+          .box
+        .col.sm-5.lg-3
+          .box
+      pre.prettyprint.
+        &lt;div class="col 
+                    sm-3
+                    lg-5">
+          &lt;div class="box">Responsive&lt;/div>
+        &lt;/div>
+    .container.fluid
+      h2 Gap
+      code "container-gap": 5px 15px 30px
+      |  configuracion
+      p gap
+      .row.gap
+        .col.sm-6
+          .box
+        .col.sm-6
+          .box
+      pre.prettyprint.
+        &lt;div class="row gap">
+          &lt;div class="col sm-6">
+            &lt;div class="box">gap&lt;/div>
+          &lt;/div>
+          &lt;div class="col sm-6">
+            &lt;div class="box">gap&lt;/div>
+          &lt;/div>
+        &lt;/div>
+
+      p gap-x
+      .row.gap-x
+        .col.sm-6
+          .box
+        .col.sm-6
+          .box
+      pre.prettyprint.
+        &lt;div class="row gap-x">
+          &lt;div class="col sm-6">
+            &lt;div class="box">gap&lt;/div>
+          &lt;/div>
+          &lt;div class="col sm-6">
+            &lt;div class="box">gap&lt;/div>
+          &lt;/div>
+        &lt;/div>
+      p gap-y
+      .row.gap-y
+        .col.sm-6
+          .box
+        .col.sm-6
+          .box
+      pre.prettyprint.
+        &lt;div class="row gap-x">
+          &lt;div class="col sm-6">
+            &lt;div class="box">gap&lt;/div>
+          &lt;/div>
+          &lt;div class="col sm-6">
+            &lt;div class="box">gap&lt;/div>
+          &lt;/div>
+        &lt;/div>
+    .container.fluid
+      h2 Auto sizing
+      p auto shrink
+      .row
+        .col.sm-4
+          .box
+        .col.sm-auto
+          .box auto
+        .col.sm-shrink
+          .box shrink
+      pre.prettyprint.
+        &lt;div class="row">
+          &lt;div class="col sm-4">
+            &lt;div class="box">4&lt;/div>
+          &lt;/div>
+          &lt;div class="col sm-auto">
+            &lt;div class="box">auto&lt;/div>
+          &lt;/div>
+          &lt;div class="col sm-shrink">
+            &lt;div class="box">shrink&lt;/div>
+          &lt;/div>
+        &lt;/div>
+    .container.fluid
+      h2 Responsive Adjustments
+      p shrink
+      .row.shrink
+        .col
+          .box One
+        .col
+          .box Two
+        .col
+          .box Three
+      pre.prettyprint.
+        &lt;div class="row shrink">
+          &lt;div class="col">
+            &lt;div class="box">One&lt;/div>
+          &lt;/div>
+          &lt;div class="col">
+            &lt;div class="box">Two&lt;/div>
+          &lt;/div>
+          &lt;div class="col">
+            &lt;div class="box">Three&lt;/div>
+          &lt;/div>
+        &lt;/div>
+    .container.fluid
+      h2 Alignment
+      p start
+      .row.sm-start
+        .col.sm-4
+          .box col
+      p center
+      .row.sm-center
+        .col.sm-4
+          .box col
+      p end
+      .row.sm-end
+        .col.sm-4
+          .box col
+      p end center start
+      .row.sm-end.md-center.lg-start
+        .col.sm-4
+          .box col
+      p top
+      .row.sm-top
+        .col.sm-6
+          .box(style="height: 100px;") col
+        .col.sm-6
+          .box col
+      p middle
+      .row.sm-middle
+        .col.sm-6
+          .box(style="height: 100px;") col
+        .col.sm-6
+          .box col
+      p bottom
+      .row.sm-bottom
+        .col.sm-6
+          .box(style="height: 100px;") col
+        .col.sm-6
+          .box col
+      p bottom middle top
+      .row.md-bottom.lg-middle.xl-top
+        .col.sm-6
+          .box(style="height: 100px;") col
+        .col.sm-6
+          .box col
+      h2 Distribution
+      p around
+      .row.sm-around
+        .col.sm-3
+          .box col
+        .col.sm-3
+          .box col
+        .col.sm-3
+          .box col
+      p between
+      .row.sm-between
+        .col.sm-3
+          .box col
+        .col.sm-3
+          .box col
+        .col.sm-3
+          .box col
+      h2 Reordering
+      p first
+      .row.shrink
+        .col
+          .box 1
+        .col
+          .box 2
+        .col
+          .box 3
+        .col.sm-first
+          .box 4
+      p last
+      .row.shrink
+        .col.sm-last
+          .box 1
+        .col
+          .box 2
+        .col
+          .box 3
+        .col
+          .box 4
+      h2 Reversing
+      p reverse
+      .row.shrink.lg-reverse
+        .col
+          .box 1
+        .col
+          .box 2
+        .col
+          .box 3
+        .col
+          .box 4
+      h2 Display elements
+      p hiding and show elements
+      .row.shrink
+        .col
+          .box 1
+        .col
+          .box 2
+        .col
+          .box 3
+        .col.md-hide
+          .box |||
+        .col.md-show
+          .box X
+    .container.fluid
+      h2 col custom
+      p up-1 up-4 up-6
+      .row.listcol
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col
+        .col
+          .box col

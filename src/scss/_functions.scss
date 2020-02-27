@@ -1,3 +1,40 @@
+
+@function list-to-map($keymap, $tolist) {
+    $containerKey: map-keys($keymap);
+    $nmap: () !default;
+    @for $i from 1 through length($tolist) {
+        $cmap: (#{nth($containerKey, $i)}: nth($tolist, $i));
+        $nmap: map-merge($nmap, $cmap);
+    }
+    @return $nmap;
+}
+
+$dev: map-get($config, dev);
+$rem: map-get($config, rem);
+$columns: map-get($config, columns);
+$breakpoints: map-get($config, breakpoints);
+$gap: map-get($config, gap);
+$container-gap: map-get($config, container-gap);
+$col-gap: map-get($config, col-gap);
+
+$container-gap-map: list-to-map($breakpoints, $container-gap);
+$col-gap-map: list-to-map($breakpoints, $col-gap);
+
+@function rem($size) {
+    $remSize: $size / $rem;
+    @return #{$remSize}rem;
+}
+
+@function sum($slist, $unit) {
+    $sum: 0 !default;
+    @each $num in $slist {
+        @if (str-index($num + "", $unit)) {
+            $sum: $sum + $num;
+        }
+    }
+    @return $sum;
+}
+
 @function size-gap($fgap) {
     @if (length($fgap) == 1) {
         @return $fgap;
@@ -13,12 +50,28 @@
     }
 }
 
-@function index-to-key($itk-index) {
-    $keys: map-keys($breakpoints);
-    @return nth($keys, $itk-index);
+@function repeat($count, $value: 1) {
+    $return: ();
+
+    @for $i from 1 through $count {
+        $return: join($return, $value);
+    }
+
+    @return $return;
 }
 
-@function rem($size) {
-    $remSize: $size / 16px;
-    @return #{$remSize}rem;
+@function count-unit($clist, $cunit) {
+    $return: 0;
+    @for $i from 1 through length($clist) {
+        @if (unit(nth($clist, $i)) == $cunit) {
+            $return: $return + 1;
+        }
+    }
+    @return $return;
+}
+
+@function map-item-key($itk-map, $itk-index) {
+    $keys: map-keys($itk-map);
+    $index: nth($keys, $itk-index);
+    @return map-get($itk-map, $index);
 }

@@ -1,17 +1,36 @@
-h4, h2, p {
-  margin-bottom: 5px;
+h4,
+h2,
+p {
+    margin-bottom: 5px;
+}
+h2 {
+  margin-top: 50px;
+}
+
+.main {
+    background-color: #eee;
 }
 
 .row {
-  background: #d6ecfa;
-  margin-bottom: 15px;
+    background: #d6ecfa;
+    margin-bottom: 15px;
+    margin-top: 20px;
 }
 .col > .box {
-  background: #1779ba;
-  color: white;
-  text-align: center;
-  padding: 7px;
+    background: #1779ba;
+    color: white;
+    text-align: center;
+    padding: 7px;
+    height: 2rem;
 }
 .col:nth-child(odd) > .box {
-  background: #37a0e6;
+    background: #37a0e6;
+}
+
+pre.prettyprint {
+    background-color: white;
+    padding: 1.25em;
+    border: 1px solid #e6e6e6;
+    border-left-width: 5px;
+    margin-top: 25px;
 }

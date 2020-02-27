@@ -1,13 +1,43 @@
 .container {
-  $container-max: map-get($breakpoints, index-to-key(-1));
+  // $container-max: map-get($breakpoints, index-to-key(-1));
   margin-right: auto;
   margin-left: auto;
-  // overflow-x: hidden;
-  max-width: nth($container-max, 1);
-  @if length($gap-container) == 1 {
-    padding-right: $gap-container;
-    padding-left: $gap-container;
+  overflow-x: hidden;
+  max-width: map-item-key($breakpoints, -1);
+}
+
+.row {
+  $one-col-gap: map-item-key($col-gap-map, 1);
+  display: flex;
+  flex-wrap: wrap;
+  &.shrink > .col {
+      flex: 1 1 auto;
+      max-width: none;
+      width: auto;
   }
+  &.gap-x.nogap {
+      overflow-x: hidden;
+  }
+  &.gap.nogap {
+      overflow-x: hidden;
+  }
+  // &.gap {
+  //     & > .col {
+  //         padding: ($one-col-gap/2) $one-col-gap;
+  //     }
+  // }
+  // &.gap-x {
+  //     & > .col {
+  //         padding-right: $one-col-gap;
+  //         padding-left: $one-col-gap;
+  //     }
+  // }
+  // &.gap-y {
+  //     & > .col {
+  //         padding-top: $one-col-gap;
+  //         padding-bottom: $one-col-gap;
+  //     }
+  // }
 }
 
 .col {
@@ -18,209 +48,132 @@
 
 @each $index, $breakpoint in $breakpoints {
   .#{$index}-show {
-    display: none;
+      display: none;
   }
 }
 
-.row {
-  &.shrink > .col {
-    flex: 1 1 auto;
-    max-width: none;
-    width: auto;
-  }
-}
-
-@if length($gap-col) == 1 {
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    &.gap-x.nogap {
-      margin-left: -$gap-col;
-      margin-right: -$gap-col;
-    }
-    &.gap-x {
-      & > .col {
-        padding-right: $gap-col;
-        padding-left: $gap-col;
-      }
-    }
-    &.gap-y {
-      & > .col {
-        padding-top: $gap-col;
-        padding-bottom: $gap-col;
-      }
-    }
-  }
-}
-
-@each $name, $mygap in $gap-x {
-  @if length($mygap) == 1 {
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      &.gap-x--#{$name}.nogap {
-        margin-left: -$gap-col;
-        margin-right: -$gap-col;
-      }
-      &.gap-x--#{$name} {
-        & > .col {
-          padding-right: $gap-col;
-          padding-left: $gap-col;
-        }
-      }
-    }
-  }
-}
-
-@each $index, $breakpoint in $breakpoints {
-  $name: $index;
+/////////////// breakpoint ///////////////
+@each $key, $breakpoint in $breakpoints {
+  $name: $key;
   $size: nth($breakpoint, 1);
 
   $counter: 1 !default;
 
   @include from($name) {
-    .container {
-      @if $size > 0 {
-        max-width: $size;
-      }
-      @if length($gap-container) >= $counter and length($gap-container) > 1 {
-        padding-left: nth($gap-container, $counter);
-        padding-right: nth($gap-container, $counter);
-      }
-    }
-
-    @if length($gap-col) >= $counter and length($gap-col) > 1 {
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        &.gap-x.nogap {
-          display: $counter;
-          margin-left: -#{nth($gap-col, $counter)};
-          margin-right: -#{nth($gap-col, $counter)};
-        }
-        &.gap-x {
-          & > .col {
-            padding-right: nth($gap-col, $counter);
-            padding-left: nth($gap-col, $counter);
+      .container {
+          @if $size > 0 {
+              max-width: $size;
           }
-        }
-        &.gap-y {
-          & > .col {
-            padding-top: nth($gap-col, $counter);
-            padding-bottom: nth($gap-col, $counter);
+          @if map-has-key($container-gap-map, $name) {
+              padding-left: map-get($container-gap-map, $name);
+              padding-right: map-get($container-gap-map, $name);
           }
-        }
       }
-    }
 
-    @each $name, $mygap in $gap-x {
-      @if length($mygap) >= $counter and length($mygap) > 1 {
-        .row {
-          display: flex;
-          flex-wrap: wrap;
-          &.gap-x--#{$name}.nogap {
-            margin-left: -#{nth($mygap, $counter)};
-            margin-right: -#{nth($mygap, $counter)};
+      @if map-has-key($col-gap-map, $name) {
+          .row {
+              $one-col-gap: map-get($col-gap-map, $name);
+              &.gap-x.nogap {
+                  margin-left: -$one-col-gap;
+                  margin-right: -$one-col-gap;
+              }
+              &.gap.nogap {
+                  margin-left: -$one-col-gap;
+                  margin-right: -$one-col-gap;
+              }
+              &.gap {
+                  & > .col {
+                      padding: ($one-col-gap/2) $one-col-gap;
+                  }
+              }
+              &.gap-x {
+                  & > .col {
+                      padding-right: $one-col-gap;
+                      padding-left: $one-col-gap;
+                  }
+              }
+              &.gap-y {
+                  & > .col {
+                      padding-top: $one-col-gap;
+                      padding-bottom: $one-col-gap;
+                  }
+              }
           }
-          &.gap-x--#{$name} {
-            & > .col {
-              padding-right: nth($mygap, $counter);
-              padding-left: nth($mygap, $counter);
-            }
+      }
+
+      @for $i from 1 through $columns {
+          .#{$name}-#{$i} {
+              width: (100% / $columns * $i);
           }
-        }
       }
-    }
 
-    $counter: ($counter + 1);
-
-    @for $i from 1 through $grid-columns {
-      .#{$name}-#{$i} {
-        width: (100% / $grid-columns * $i);
+      .#{$name}-start {
+          justify-content: start;
+          text-align: left;
       }
-    }
 
-    @for $i from 1 through $grid-col {
-      .row {
-        &.#{$name}-up-#{$i} {
-          & > .col {
-            width: (100% / $i);
-          }
-        }
+      .#{$name}-center {
+          justify-content: center;
+          text-align: center;
       }
-    }
 
-    .#{$name}-start {
-      justify-content: start;
-      text-align: left;
-    }
+      .#{$name}-end {
+          justify-content: flex-end;
+          text-align: right;
+      }
 
-    .#{$name}-center {
-      justify-content: center;
-      text-align: center;
-    }
+      .#{$name}-around {
+          justify-content: space-around;
+      }
 
-    .#{$name}-end {
-      justify-content: flex-end;
-      text-align: right;
-    }
+      .#{$name}-between {
+          justify-content: space-between;
+      }
 
-    .#{$name}-around {
-      justify-content: space-around;
-    }
+      .#{$name}-top {
+          align-items: start;
+      }
 
-    .#{$name}-between {
-      justify-content: space-between;
-    }
+      .#{$name}-middle {
+          align-items: center;
+      }
 
-    .#{$name}-top {
-      align-items: start;
-    }
+      .#{$name}-bottom {
+          align-items: end;
+      }
 
-    .#{$name}-middle {
-      align-items: center;
-    }
+      .#{$name}-auto {
+          flex: 0 0 auto;
+          max-width: none;
+          width: auto;
+      }
 
-    .#{$name}-bottom {
-      align-items: flex-end;
-    }
+      .#{$name}-shrink {
+          flex: 1 1 auto;
+          max-width: none;
+          width: auto;
+      }
 
-    .#{$name}-auto {
-      flex: 0 0 auto;
-      max-width: none;
-      width: auto;
-    }
+      .#{$name}-hide {
+          display: none;
+      }
 
-    .#{$name}-shrink {
-      flex: 1 1 auto;
-      max-width: none;
-      width: auto;
-    }
-
-    .#{$name}-first {
-      order: -1;
-    }
-
-    .#{$name}-last {
-      order: 1;
-    }
-
-    .#{$name}-reverse {
-      flex-direction: row-reverse;
-    }
-
-    .#{$name}-hide {
-      display: none;
-    }
-
-    .#{$name}-show {
-      display: block;
-    }
+      .#{$name}-show {
+          display: block;
+      }
   }
 }
 
 .container.fluid {
-  $container-max: map-get($breakpoints, index-to-key(-1));
-  max-width: nth($container-max, 1);
+  // $container-max: map-get($breakpoints, index-to-key(-1));
+  max-width: map-item-key($breakpoints, -1);
   width: 100%;
+}
+
+.listcol {
+  @include row(100px 1fr 100px);
+
+  @include from(md) {
+      @include row(gap 10px nogap, 100px 1fr 1fr 100px);
+  }
 }
