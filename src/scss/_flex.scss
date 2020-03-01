@@ -1,179 +1,182 @@
 .container {
-  // $container-max: map-get($breakpoints, index-to-key(-1));
-  margin-right: auto;
-  margin-left: auto;
-  overflow-x: hidden;
-  max-width: map-item-key($breakpoints, -1);
+    // $container-max: map-get($breakpoints, index-to-key(-1));
+    margin-right: auto;
+    margin-left: auto;
+    //   overflow-x: hidden;
+    max-width: map-item-key($breakpoints, -1);
+    &.max {
+        overflow-x: hidden;
+    }
 }
 
 .row {
-  $one-col-gap: map-item-key($col-gap-map, 1);
-  display: flex;
-  flex-wrap: wrap;
-  &.shrink > .col {
-      flex: 1 1 auto;
-      max-width: none;
-      width: auto;
-  }
-  &.gap-x.nogap {
-      overflow-x: hidden;
-  }
-  &.gap.nogap {
-      overflow-x: hidden;
-  }
-  // &.gap {
-  //     & > .col {
-  //         padding: ($one-col-gap/2) $one-col-gap;
-  //     }
-  // }
-  // &.gap-x {
-  //     & > .col {
-  //         padding-right: $one-col-gap;
-  //         padding-left: $one-col-gap;
-  //     }
-  // }
-  // &.gap-y {
-  //     & > .col {
-  //         padding-top: $one-col-gap;
-  //         padding-bottom: $one-col-gap;
-  //     }
-  // }
+    $one-col-gap: map-item-key($col-gap-map, 1);
+    display: flex;
+    flex-wrap: wrap;
+    &.shrink > .col {
+        flex: 1 1 auto;
+        max-width: none;
+        width: auto;
+    }
+    &.gap-x.nogap {
+        overflow-x: hidden;
+    }
+    &.gap.nogap {
+        overflow-x: hidden;
+    }
+    // &.gap {
+    //     & > .col {
+    //         padding: ($one-col-gap/2) $one-col-gap;
+    //     }
+    // }
+    // &.gap-x {
+    //     & > .col {
+    //         padding-right: $one-col-gap;
+    //         padding-left: $one-col-gap;
+    //     }
+    // }
+    // &.gap-y {
+    //     & > .col {
+    //         padding-top: $one-col-gap;
+    //         padding-bottom: $one-col-gap;
+    //     }
+    // }
 }
 
 .col {
-  display: block;
-  flex: 0 0 auto;
-  width: 100%;
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
 }
 
 @each $index, $breakpoint in $breakpoints {
-  .#{$index}-show {
-      display: none;
-  }
+    .#{$index}-show {
+        display: none;
+    }
 }
 
 /////////////// breakpoint ///////////////
 @each $key, $breakpoint in $breakpoints {
-  $name: $key;
-  $size: nth($breakpoint, 1);
+    $name: $key;
+    $size: nth($breakpoint, 1);
 
-  $counter: 1 !default;
+    $counter: 1 !default;
 
-  @include from($name) {
-      .container {
-          @if $size > 0 {
-              max-width: $size;
-          }
-          @if map-has-key($container-gap-map, $name) {
-              padding-left: map-get($container-gap-map, $name);
-              padding-right: map-get($container-gap-map, $name);
-          }
-      }
+    @include from($name) {
+        .container {
+            @if $size > 0 {
+                max-width: $size;
+            }
+            @if map-has-key($container-gap-map, $name) {
+                padding-left: map-get($container-gap-map, $name);
+                padding-right: map-get($container-gap-map, $name);
+            }
+        }
 
-      @if map-has-key($col-gap-map, $name) {
-          .row {
-              $one-col-gap: map-get($col-gap-map, $name);
-              &.gap-x.nogap {
-                  margin-left: -$one-col-gap;
-                  margin-right: -$one-col-gap;
-              }
-              &.gap.nogap {
-                  margin-left: -$one-col-gap;
-                  margin-right: -$one-col-gap;
-              }
-              &.gap {
-                  & > .col {
-                      padding: ($one-col-gap/2) $one-col-gap;
-                  }
-              }
-              &.gap-x {
-                  & > .col {
-                      padding-right: $one-col-gap;
-                      padding-left: $one-col-gap;
-                  }
-              }
-              &.gap-y {
-                  & > .col {
-                      padding-top: $one-col-gap;
-                      padding-bottom: $one-col-gap;
-                  }
-              }
-          }
-      }
+        @if map-has-key($col-gap-map, $name) {
+            .row {
+                $one-col-gap: map-get($col-gap-map, $name);
+                &.gap-x.nogap {
+                    margin-left: -$one-col-gap;
+                    margin-right: -$one-col-gap;
+                }
+                &.gap.nogap {
+                    margin-left: -$one-col-gap;
+                    margin-right: -$one-col-gap;
+                }
+                &.gap {
+                    & > .col {
+                        padding: ($one-col-gap/2) $one-col-gap;
+                    }
+                }
+                &.gap-x {
+                    & > .col {
+                        padding-right: $one-col-gap;
+                        padding-left: $one-col-gap;
+                    }
+                }
+                &.gap-y {
+                    & > .col {
+                        padding-top: $one-col-gap;
+                        padding-bottom: $one-col-gap;
+                    }
+                }
+            }
+        }
 
-      @for $i from 1 through $columns {
-          .#{$name}-#{$i} {
-              width: (100% / $columns * $i);
-          }
-      }
+        @for $i from 1 through $columns {
+            .#{$name}-#{$i} {
+                width: (100% / $columns * $i);
+            }
+        }
 
-      .#{$name}-start {
-          justify-content: start;
-          text-align: left;
-      }
+        .#{$name}-start {
+            justify-content: start;
+            text-align: left;
+        }
 
-      .#{$name}-center {
-          justify-content: center;
-          text-align: center;
-      }
+        .#{$name}-center {
+            justify-content: center;
+            text-align: center;
+        }
 
-      .#{$name}-end {
-          justify-content: flex-end;
-          text-align: right;
-      }
+        .#{$name}-end {
+            justify-content: flex-end;
+            text-align: right;
+        }
 
-      .#{$name}-around {
-          justify-content: space-around;
-      }
+        .#{$name}-around {
+            justify-content: space-around;
+        }
 
-      .#{$name}-between {
-          justify-content: space-between;
-      }
+        .#{$name}-between {
+            justify-content: space-between;
+        }
 
-      .#{$name}-top {
-          align-items: start;
-      }
+        .#{$name}-top {
+            align-items: start;
+        }
 
-      .#{$name}-middle {
-          align-items: center;
-      }
+        .#{$name}-middle {
+            align-items: center;
+        }
 
-      .#{$name}-bottom {
-          align-items: end;
-      }
+        .#{$name}-bottom {
+            align-items: end;
+        }
 
-      .#{$name}-auto {
-          flex: 0 0 auto;
-          max-width: none;
-          width: auto;
-      }
+        .#{$name}-auto {
+            flex: 0 0 auto;
+            max-width: none;
+            width: auto;
+        }
 
-      .#{$name}-shrink {
-          flex: 1 1 auto;
-          max-width: none;
-          width: auto;
-      }
+        .#{$name}-shrink {
+            flex: 1 1 auto;
+            max-width: none;
+            width: auto;
+        }
 
-      .#{$name}-hide {
-          display: none;
-      }
+        .#{$name}-hide {
+            display: none;
+        }
 
-      .#{$name}-show {
-          display: block;
-      }
-  }
+        .#{$name}-show {
+            display: block;
+        }
+    }
 }
 
 .container.fluid {
-  // $container-max: map-get($breakpoints, index-to-key(-1));
-  max-width: map-item-key($breakpoints, -1);
-  width: 100%;
+    // $container-max: map-get($breakpoints, index-to-key(-1));
+    max-width: map-item-key($breakpoints, -1);
+    width: 100%;
 }
 
 .listcol {
-  @include row(100px 1fr 100px);
+    @include row(1fr 1fr 1fr);
 
-  @include from(md) {
-      @include row(gap 10px nogap, 100px 1fr 1fr 100px);
-  }
+    //   @include from(md) {
+    //       @include row(gap 10px nogap, 100px 1fr 1fr 100px);
+    //   }
 }
