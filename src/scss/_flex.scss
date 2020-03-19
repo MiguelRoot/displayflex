@@ -174,9 +174,13 @@
 }
 
 .listcol {
-    @include row(1fr 1fr 1fr);
+    @include row(gap-x 30px nogap, 1fr 1fr 1fr);
 
     //   @include from(md) {
     //       @include row(gap 10px nogap, 100px 1fr 1fr 100px);
     //   }
+}
+
+.boxfit {
+    @include fit(273px 150px);
 }
