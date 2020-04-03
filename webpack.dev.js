@@ -12,7 +12,8 @@ module.exports = merge(common, {
         hot: true,
         before(app, server) {
             chokidar.watch([
-                './src/views/**/*.pug'
+                './src/views/**/*.pug',
+                './*.md',
             ]).on('all', function () {
                 server.sockWrite(server.sockets, 'content-changed');
             })
@@ -27,6 +28,12 @@ module.exports = merge(common, {
                         loader: 'html-loader',
                         options: {
                             root: path.resolve(__dirname, 'src')
+                        }
+                    },
+                    {
+                        loader: "markdown-loader",
+                        options: {
+                            /* your options here */
                         }
                     },
                     {

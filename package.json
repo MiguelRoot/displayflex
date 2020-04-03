@@ -1,13 +1,18 @@
 {
   "name": "displayflex",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "grid layout scss",
   "main": "src/main.scss",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "dev": "npm run build && webpack-dev-server --config webpack.dev.js"
+    "dev": "webpack-dev-server --config webpack.dev.js"
   },
-  "keywords": ["flexbox", "grid", "layout", "scss"],
+  "keywords": [
+    "flexbox",
+    "grid",
+    "layout",
+    "scss"
+  ],
   "author": "killki",
   "license": "ISC",
   "devDependencies": {
@@ -22,6 +27,7 @@
     "flexboxgrid": "^6.3.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "markdown-loader": "^5.1.0",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",

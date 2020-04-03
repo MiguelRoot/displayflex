@@ -27,6 +27,12 @@ module.exports = merge(common, {
                         }
                     },
                     {
+                        loader: "markdown-loader",
+                        options: {
+                            /* your options here */
+                        }
+                    },
+                    {
                         loader: 'pug-html-loader',
                         options: {
                             pretty: true

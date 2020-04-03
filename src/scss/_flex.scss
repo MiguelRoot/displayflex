@@ -156,6 +156,17 @@
             max-width: none;
             width: auto;
         }
+        .#{$name}-first {
+            order: -1;
+        }
+
+        .#{$name}-last {
+            order: 1;
+        }
+
+        .#{$name}-reverse {
+            flex-direction: row-reverse;
+        }
 
         .#{$name}-hide {
             display: none;
