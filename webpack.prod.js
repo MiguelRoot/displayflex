@@ -5,12 +5,16 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const Autoprefixer = require('autoprefixer')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const OfflinePlugin = require('offline-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = merge(common, {
     mode: 'production',
+    plugins: [
+      new OfflinePlugin()
+    ],
     output: {
         filename: "[name].[contentHash].js",
         path: path.resolve(__dirname, "dist")
