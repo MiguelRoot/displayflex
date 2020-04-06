@@ -1,5 +1,5 @@
 # DisplayFlex
-> Flexible based customizable grid.
+> Flexible based customizable grid. [documentation](https://miguelroot.github.io/displayflex/)
 
 
 ## Install:
@@ -7,8 +7,6 @@
 ### npm
 ``npm i displayflex``
 
-### documentation
-[documentation](https://miguelroot.github.io/displayflex/)
 ### import
 ```
 @import "node_modules/displayflex/displayflex";
