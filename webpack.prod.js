@@ -88,7 +88,9 @@ module.exports = merge(common, {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({ filename: "flexgrid.css" })
+        new MiniCssExtractPlugin({
+            filename: "flexgrid.css"
+        })
     ]
 
 })

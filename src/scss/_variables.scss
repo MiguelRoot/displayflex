@@ -1,18 +1,26 @@
-$font-family: 'Lato', Verdana, Geneva, Tahoma, sans-serif;
+$font-family: "Lato", Verdana, Geneva, Tahoma, sans-serif;
 
-$config: (
-    "dev": false,
-    "rem": 16px,
-    "columns": 12,
+$dev: true !default;
+$rem: 16px !default;
+
+$grids: (
     "breakpoints": (
         "xs": 0,
         "sm": 769px,
         "md": 1024px,
         "lg": 1216px,
-        "xl": 1408px
+        "xl": 1408px,
     ),
+    "columns": 12,
     "container-gap": 5px 15px 30px,
-    "col-gap": 5px 10px 40px
+    "col-gap": 5px 10px 40px,
+) !default;
+
+$gaps: (
+    "top": 1px,
+    "bottom": 1px,
+    "right": 1px,
+    "left": 1px,
 ) !default;
 
 // container from

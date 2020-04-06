@@ -1,4 +1,3 @@
-
 @function list-to-map($keymap, $tolist) {
     $containerKey: map-keys($keymap);
     $nmap: () !default;
@@ -9,16 +8,25 @@
     @return $nmap;
 }
 
-$dev: map-get($config, dev);
-$rem: map-get($config, rem);
-$columns: map-get($config, columns);
-$breakpoints: map-get($config, breakpoints);
-$gap: map-get($config, gap);
-$container-gap: map-get($config, container-gap);
-$col-gap: map-get($config, col-gap);
+$dev: map-get($grids, dev);
+$columns: map-get($grids, columns);
+$breakpoints: map-get($grids, breakpoints);
+$gap: map-get($grids, gap);
+$container-gap: map-get($grids, container-gap);
+$col-gap: map-get($grids, col-gap);
 
 $container-gap-map: list-to-map($breakpoints, $container-gap);
 $col-gap-map: list-to-map($breakpoints, $col-gap);
+
+////varialbes///
+
+// $gap-mp: map-get($gaps, pm);
+// $gap-mp-y: map-get($gaps, pm-y);
+// $gap-mp-x: map-get($gaps, pm-x);
+// $gap-t: map-get($gaps, t);
+// $gap-b: map-get($gaps, b);
+// $gap-r: map-get($gaps, r);
+// $gap-l: map-get($gaps, l);
 
 @function rem($size) {
     $remSize: $size / $rem;
@@ -74,4 +82,12 @@ $col-gap-map: list-to-map($breakpoints, $col-gap);
     $keys: map-keys($itk-map);
     $index: nth($keys, $itk-index);
     @return map-get($itk-map, $index);
+}
+
+@function strip-unit($number) {
+    @if type-of($number) == "number" and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+
+    @return $number;
 }

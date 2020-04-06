@@ -97,6 +97,7 @@
 
 @mixin fit($list) {
     position: relative;
+    flex: auto;
     $fit-h: nth($list, 2) * 100 / nth($list, 1);
     &::after {
         content: '';

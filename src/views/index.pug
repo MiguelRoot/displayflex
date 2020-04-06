@@ -1,29 +1,39 @@
 extends template
 block main
-  h1.sm-center DisplayFlex
+  p.mt15
+  h1.xs-center DisplayFlex
+  p.xs-center Flexible based customizable grid.
   main.main
     .container.fluid
-      h2 Configuration
-      p fully configurable
+      h2.mt15 Configuration
       pre.prettyprint.
-        $config: (
-          "dev": false,
-          "rem": 16px,
-          "columns": 12,
-          "breakpoints": (
-            "xs": 0,
-            "sm": 769px,
-            "md": 1024px,
-            "lg": 1216px,
-            "xl": 1408px
-          ),
-          "container-gap": 5px 15px 30px,
-          "col-gap": 5px 10px 40px
+        $dev: false;
+        $rem: 16px;
+
+        $columns: (
+            "breakpoints": (
+                "xs": 0,
+                "sm": 769px,
+                "md": 1024px,
+                "lg": 1216px,
+                "xl": 1408px,
+            ),
+            "columns": 12,
+            "container-gap": 5px 15px 30px,
+            "col-gap": 5px 10px 40px,
         );
 
+        $gaps: (
+            "top": 10px 15px,
+            "bottom": 10px 30px,
+            "right": 10px 30px,
+            "left": 10px 30px,
+        );
+
+    .container.fluid
       h2 Horizontal grid
-      code .col 
-      | full width cell
+      code col
+      |  full width cell
       .row
         .col
           .box
@@ -32,11 +42,11 @@ block main
       pre.prettyprint.
         &lt;div class="row">
           &lt;div class="col">
-            &lt;div class="box">Horizontal grid&lt;/div>
+            &lt;div class="box">&lt;/div>
           &lt;/div>
 
           &lt;div class="col md-12">
-            &lt;div class="box">Horizontal grid&lt;/div>
+            &lt;div class="box">&lt;/div>
           &lt;/div>
         &lt;/div>
 
@@ -57,9 +67,8 @@ block main
         &lt;/div>
     .container.fluid
       h2 Gap
-      code "container-gap": 5px 15px 30px
-      |  configuracion
-      p gap
+      | $config: 
+      code "col-gap": 5px 15px 30px
       .row.gap
         .col.sm-6
           .box
@@ -75,7 +84,7 @@ block main
           &lt;/div>
         &lt;/div>
 
-      p gap-x
+      code gap-x
       .row.gap-x
         .col.sm-6
           .box
@@ -90,7 +99,7 @@ block main
             &lt;div class="box">gap&lt;/div>
           &lt;/div>
         &lt;/div>
-      p gap-y
+      code gap-y
       .row.gap-y
         .col.sm-6
           .box
@@ -107,10 +116,12 @@ block main
         &lt;/div>
     .container.fluid
       h2 Auto sizing
-      p auto shrink
+      code sm-auto
+      | 
+      code sm-shrink
       .row
         .col.sm-4
-          .box
+          .box 4
         .col.sm-auto
           .box auto
         .col.sm-shrink
@@ -129,97 +140,199 @@ block main
         &lt;/div>
     .container.fluid
       h2 Responsive Adjustments
-      p shrink
+      code row shrink
       .row.shrink
         .col
-          .box One
+          .box 
         .col
-          .box Two
+          .box 
         .col
-          .box Three
+          .box 
       pre.prettyprint.
         &lt;div class="row shrink">
           &lt;div class="col">
-            &lt;div class="box">One&lt;/div>
+            &lt;div class="box">&lt;/div>
           &lt;/div>
           &lt;div class="col">
-            &lt;div class="box">Two&lt;/div>
+            &lt;div class="box">&lt;/div>
           &lt;/div>
           &lt;div class="col">
-            &lt;div class="box">Three&lt;/div>
+            &lt;div class="box">&lt;/div>
           &lt;/div>
         &lt;/div>
     .container.fluid
       h2 Alignment
-      p start
+      code sm-start
       .row.sm-start
         .col.sm-4
-          .box col
-      p center
+          .box 
+      pre.prettyprint.
+        &lt;div class="row sm-start">
+          &lt;div class="col sm-4">
+            &lt;div class="box">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+      code sm-center
       .row.sm-center
         .col.sm-4
-          .box col
-      p end
+          .box
+      pre.prettyprint.
+        &lt;div class="row sm-center">
+          &lt;div class="col sm-4">
+            &lt;div class="box">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+      code sm-end
       .row.sm-end
         .col.sm-4
-          .box col
-      p end center start
+          .box
+      pre.prettyprint.
+        &lt;div class="row sm-end">
+          &lt;div class="col sm-4">
+            &lt;div class="box">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+      code sm-end
+      | 
+      code md-center
+      | 
+      code lg-start
       .row.sm-end.md-center.lg-start
         .col.sm-4
-          .box col
-      p top
+          .box
+      pre.prettyprint.
+        &lt;div class="row sm-end md-center lg-start">
+          &lt;div class="col sm-4">
+            &lt;div class="box">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+      code sm-top
       .row.sm-top
         .col.sm-6
-          .box(style="height: 100px;") col
+          .box(style="height: 100px;")
         .col.sm-6
-          .box col
-      p middle
+          .box
+      pre.prettyprint.
+        &lt;div class="row sm-top">
+            &lt;div class="col sm-6">
+                &lt;div class="box" style="height: 100px;">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-6">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+        &lt;/div>
+      code sm-middle
       .row.sm-middle
         .col.sm-6
-          .box(style="height: 100px;") col
+          .box(style="height: 100px;")
         .col.sm-6
-          .box col
-      p bottom
+          .box
+      pre.prettyprint.
+        &lt;div class="row sm-middle">
+            &lt;div class="col sm-6">
+                &lt;div class="box" style="height: 100px;">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-6">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+        &lt;/div>
+      code bottom
       .row.sm-bottom
         .col.sm-6
-          .box(style="height: 100px;") col
+          .box(style="height: 100px;")
         .col.sm-6
-          .box col
-      p bottom middle top
-      .row.md-bottom.lg-middle.xl-top
+          .box
+      pre.prettyprint.
+        &lt;div class="row sm-bottom">
+            &lt;div class="col sm-6">
+                &lt;div class="box" style="height: 100px;">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-6">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+        &lt;/div>
+      code sm-bottom
+      | 
+      code md-middle
+      | 
+      code lg-top
+      .row.sm-bottom.md-middle.lg-top
         .col.sm-6
-          .box(style="height: 100px;") col
+          .box(style="height: 100px;")
         .col.sm-6
-          .box col
+          .box 
+      pre.prettyprint.
+        &lt;div class="row sm-bottom md-middle lg-top">
+            &lt;div class="col sm-6">
+                &lt;div class="box" style="height: 100px;">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-6">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+        &lt;/div>
       h2 Distribution
-      p around
+      code sm-around
       .row.sm-around
         .col.sm-3
-          .box col
+          .box 
         .col.sm-3
-          .box col
+          .box 
         .col.sm-3
-          .box col
-      p between
+          .box 
+      pre.prettyprint.
+        &lt;div class="row sm-around">
+            &lt;div class="col sm-3">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-3">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-3">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+        &lt;/div>
+      code sm-between
       .row.sm-between
         .col.sm-3
-          .box col
+          .box 
         .col.sm-3
-          .box col
+          .box 
         .col.sm-3
-          .box col
+          .box 
+      pre.prettyprint.
+        &lt;div class="row sm-between">
+            &lt;div class="col sm-3">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-3">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-3">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+        &lt;/div>
       h2 Reordering
-      p first
+      code sm-first
       .row.shrink
         .col
           .box 1
         .col
           .box 2
-        .col
-          .box 3
         .col.sm-first
-          .box 4
-      p last
+          .box 3
+      pre.prettyprint.
+        &lt;div class="row shrink">
+            &lt;div class="col">
+                &lt;div class="box">1&lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box">2&lt;/div>
+            &lt;/div>
+            &lt;div class="col sm-first">
+                &lt;div class="box">3&lt;/div>
+            &lt;/div>
+        &lt;/div>
+      code sm-last
       .row.shrink
         .col.sm-last
           .box 1
@@ -227,10 +340,20 @@ block main
           .box 2
         .col
           .box 3
-        .col
-          .box 4
+      pre.prettyprint.
+        &lt;div class="row shrink">
+            &lt;div class="col sm-last">
+                &lt;div class="box">1&lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box">2&lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box">3&lt;/div>
+            &lt;/div>
+        &lt;/div>
       h2 Reversing
-      p reverse
+      code sm-reverse
       .row.shrink.lg-reverse
         .col
           .box 1
@@ -238,48 +361,100 @@ block main
           .box 2
         .col
           .box 3
-        .col
-          .box 4
+      pre.prettyprint.
+        &lt;div class="row sm-reverse">
+            &lt;div class="col">
+                &lt;div class="box">1&lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box">2&lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box">3&lt;/div>
+            &lt;/div>
+        &lt;/div>
       h2 Display elements
       p hiding and show elements
+      code md-hide
+      | 
+      code md-show
       .row.shrink
         .col
-          .box 1
+          .box 
         .col
-          .box 2
-        .col
-          .box 3
+          .box 
         .col.md-hide
           .box |||
         .col.md-show
           .box X
+      pre.prettyprint.
+        &lt;div class="row shrink">
+            &lt;div class="col">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box">&lt;/div>
+            &lt;/div>
+            &lt;div class="col md-hide">
+                &lt;div class="box">|||&lt;/div>
+            &lt;/div>
+            &lt;div class="col md-show">
+                &lt;div class="box">X&lt;/div>
+            &lt;/div>
+        &lt;/div>
     .container.fluid
-      h2 col custom
-      p up-1 up-4 up-6
-      .row.listcol
+      h2 Methods
+      p Calculate the sizes that you indicate.
+      pre.mb15.prettyprint.
+        .myNameClass {
+          @include row(100px 1fr 100px);
+        }
+      .row.myNameClass
         .col
-          .box col
+          .box 
         .col
-          .box col
+          .box 
         .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-        .col
-          .box col
-    .container
-      .boxfit
+          .box 
+      pre.prettyprint.
+        &lt;div class="row myNameClass">
+            &lt;div class="col">
+                &lt;div class="box"> &lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box"> &lt;/div>
+            &lt;/div>
+            &lt;div class="col">
+                &lt;div class="box"> &lt;/div>
+            &lt;/div>
+        &lt;/div>
+      h3 fit
+      p Calculate the width and height that grow in proportion.
+      pre.mb15.prettyprint.
+        .myNameFit {
+          @include fit(273px 50px);
+        }
+      .row
+        .myNameFit
+          .box
+      pre.prettyprint.
+        &lt;div class="myNameFit">
+            &lt;div class="box">&lt;/div>
+        &lt;/div>
+      h3 query
+      p Mixin that indicates from
+      pre.prettyprint.
+        .myclassFrom {
+            font-size: 12px;
+            @include from(md) {
+                font-size: 16px;
+            }
+        }
+      p Mixin that indicates until
+      pre.prettyprint.
+        .myclassFrom {
+            font-size: 16px;
+            @include until(sm) {
+                font-size: 12px;
+            }
+        }

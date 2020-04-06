@@ -1,8 +1,6 @@
 .container {
-    // $container-max: map-get($breakpoints, index-to-key(-1));
     margin-right: auto;
     margin-left: auto;
-    //   overflow-x: hidden;
     max-width: map-item-key($breakpoints, -1);
     &.max {
         overflow-x: hidden;
@@ -24,23 +22,6 @@
     &.gap.nogap {
         overflow-x: hidden;
     }
-    // &.gap {
-    //     & > .col {
-    //         padding: ($one-col-gap/2) $one-col-gap;
-    //     }
-    // }
-    // &.gap-x {
-    //     & > .col {
-    //         padding-right: $one-col-gap;
-    //         padding-left: $one-col-gap;
-    //     }
-    // }
-    // &.gap-y {
-    //     & > .col {
-    //         padding-top: $one-col-gap;
-    //         padding-bottom: $one-col-gap;
-    //     }
-    // }
 }
 
 .col {
@@ -142,7 +123,7 @@
         }
 
         .#{$name}-bottom {
-            align-items: end;
+            align-items: flex-end;
         }
 
         .#{$name}-auto {
@@ -179,19 +160,40 @@
 }
 
 .container.fluid {
-    // $container-max: map-get($breakpoints, index-to-key(-1));
     max-width: map-item-key($breakpoints, -1);
     width: 100%;
 }
 
-.listcol {
-    @include row(gap-x 30px nogap, 1fr 1fr 1fr);
+/////////////// gaps ///////////////
+@each $index, $gap in $gaps {
+    @for $i from 1 through length($gap) {
+        $gap-number: strip-unit(nth($gap, $i));
+        $gap-size: nth($gap, $i);
+        $letter: str-slice($index, 1, 1);
 
-    //   @include from(md) {
-    //       @include row(gap 10px nogap, 100px 1fr 1fr 100px);
-    //   }
+        .m#{$letter}#{$gap-number} {
+            margin-#{$index}: $gap-size !important;
+        }
+        .p#{$letter}#{$gap-number} {
+            padding-#{$index}: $gap-size !important;
+        }
+    }
 }
 
-.boxfit {
-    @include fit(273px 150px);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+// @if $dev {
+//     * {
+//         outline: 1px solid red;
+//     }
+// }

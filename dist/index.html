@@ -1,31 +1,37 @@
-<!DOCTYPE html><!DOCTYPE js><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>FlexGrid</title><link href=flexgrid.css rel=stylesheet></head><body onload=PR.prettyPrint()><h1 class=sm-center>FlexGrid</h1><main class=main></main><main class=main><div class="container fluid"><h2>Configuration</h2><p>fully configurable</p><pre class=prettyprint>$config: (
-  "dev": false,
-  "rem": 16px,
-  "columns": 12,
-  "breakpoints": (
-    "xs": 0,
-    "sm": 769px,
-    "md": 1024px,
-    "lg": 1216px,
-    "xl": 1408px
-  ),
-  "container-gap": 5px 15px 30px,
-  "col-gap": 5px 10px 40px
-);
-</pre><h2>Horizontal grid</h2><code>.col</code>full width cell<div class=row><div class=col><div class=box></div></div><div class="col md-12"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row">
-  &lt;div class="col">
-    &lt;div class="box">Horizontal grid&lt;/div>
-  &lt;/div>
+<!DOCTYPE html><!DOCTYPE js><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>FlexGrid</title><link href=flexgrid.css rel=stylesheet></head><body onload=PR.prettyPrint()><p class=mt15></p><h1 class=xs-center>DisplayFlex</h1><p class=xs-center>Flexible based customizable grid.</p><main class=main><div class="container fluid"><h2 class=mt15>Configuration</h2><pre class=prettyprint>$dev: false;
+$rem: 16px;
 
-<p>  &lt;div class=&quot;col md-12&quot;&gt;
-    &lt;div class=&quot;box&quot;&gt;Horizontal grid&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<p>$columns: (
+    &quot;breakpoints&quot;: (
+        &quot;xs&quot;: 0,
+        &quot;sm&quot;: 769px,
+        &quot;md&quot;: 1024px,
+        &quot;lg&quot;: 1216px,
+        &quot;xl&quot;: 1408px,
+    ),
+    &quot;columns&quot;: 12,
+    &quot;container-gap&quot;: 5px 15px 30px,
+    &quot;col-gap&quot;: 5px 10px 40px,
+);</p>
+<p>$gaps: (
+    &quot;top&quot;: 10px 15px,
+    &quot;bottom&quot;: 10px 30px,
+    &quot;right&quot;: 10px 30px,
+    &quot;left&quot;: 10px 30px,
+);
+</p></pre></div><div class="container fluid"><h2>Horizontal grid</h2><code>col</code> full width cell<div class=row><div class=col><div class=box></div></div><div class="col md-12"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row">
+  &lt;div class="col">
+    &lt;div class="box">&lt;/div>
+  &lt;/div><p></p>
+<p>  &lt;div class="col md-12">
+    &lt;div class="box">&lt;/div>
+  &lt;/div>
+&lt;/div>
 </p></pre></div><div class="container fluid"><h2>Responsive</h2><div class=row><div class="col sm-3 lg-5"><div class=box></div></div><div class="col sm-4 lg-4"><div class=box></div></div><div class="col sm-5 lg-3"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="col 
             sm-3
             lg-5">
   &lt;div class="box">Responsive&lt;/div>
-&lt;/div></pre></div><div class="container fluid"><h2>Gap</h2><code>"container-gap": 5px 15px 30px</code> configuracion<p>gap</p><div class="row gap"><div class="col sm-6"><div class=box></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row gap">
+&lt;/div></pre></div><div class="container fluid"><h2>Gap</h2>$config: <code>"col-gap": 5px 15px 30px</code><div class="row gap"><div class="col sm-6"><div class=box></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row gap">
   &lt;div class="col sm-6">
     &lt;div class="box">gap&lt;/div>
   &lt;/div>
@@ -33,21 +39,21 @@
     &lt;div class="box">gap&lt;/div>
   &lt;/div>
 &lt;/div>
-</pre><p>gap-x</p><div class="row gap-x"><div class="col sm-6"><div class=box></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row gap-x">
+</pre><code>gap-x</code><div class="row gap-x"><div class="col sm-6"><div class=box></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row gap-x">
   &lt;div class="col sm-6">
     &lt;div class="box">gap&lt;/div>
   &lt;/div>
   &lt;div class="col sm-6">
     &lt;div class="box">gap&lt;/div>
   &lt;/div>
-&lt;/div></pre><p>gap-y</p><div class="row gap-y"><div class="col sm-6"><div class=box></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row gap-x">
+&lt;/div></pre><code>gap-y</code><div class="row gap-y"><div class="col sm-6"><div class=box></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row gap-x">
   &lt;div class="col sm-6">
     &lt;div class="box">gap&lt;/div>
   &lt;/div>
   &lt;div class="col sm-6">
     &lt;div class="box">gap&lt;/div>
   &lt;/div>
-&lt;/div></pre></div><div class="container fluid"><h2>Auto sizing</h2><p>auto shrink</p><div class=row><div class="col sm-4"><div class=box></div></div><div class="col sm-auto"><div class=box>auto</div></div><div class="col sm-shrink"><div class=box>shrink</div></div></div><pre class=prettyprint>&lt;div class="row">
+&lt;/div></pre></div><div class="container fluid"><h2>Auto sizing</h2><code>sm-auto</code> <code>sm-shrink</code><div class=row><div class="col sm-4"><div class=box>4</div></div><div class="col sm-auto"><div class=box>auto</div></div><div class="col sm-shrink"><div class=box>shrink</div></div></div><pre class=prettyprint>&lt;div class="row">
   &lt;div class="col sm-4">
     &lt;div class="box">4&lt;/div>
   &lt;/div>
@@ -57,14 +63,147 @@
   &lt;div class="col sm-shrink">
     &lt;div class="box">shrink&lt;/div>
   &lt;/div>
-&lt;/div></pre></div><div class="container fluid"><h2>Responsive Adjustments</h2><p>shrink</p><div class="row shrink"><div class=col><div class=box>One</div></div><div class=col><div class=box>Two</div></div><div class=col><div class=box>Three</div></div></div><pre class=prettyprint>&lt;div class="row shrink">
+&lt;/div></pre></div><div class="container fluid"><h2>Responsive Adjustments</h2><code>row shrink</code><div class="row shrink"><div class=col><div class=box></div></div><div class=col><div class=box></div></div><div class=col><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row shrink">
   &lt;div class="col">
-    &lt;div class="box">One&lt;/div>
+    &lt;div class="box">&lt;/div>
   &lt;/div>
   &lt;div class="col">
-    &lt;div class="box">Two&lt;/div>
+    &lt;div class="box">&lt;/div>
   &lt;/div>
   &lt;div class="col">
-    &lt;div class="box">Three&lt;/div>
+    &lt;div class="box">&lt;/div>
   &lt;/div>
-&lt;/div></pre></div><div class="container fluid"><h2>Alignment</h2><p>start</p><div class="row sm-start"><div class="col sm-4"><div class=box>col</div></div></div><p>center</p><div class="row sm-center"><div class="col sm-4"><div class=box>col</div></div></div><p>end</p><div class="row sm-end"><div class="col sm-4"><div class=box>col</div></div></div><p>end center start</p><div class="row sm-end md-center lg-start"><div class="col sm-4"><div class=box>col</div></div></div><p>top</p><div class="row sm-top"><div class="col sm-6"><div class=box style="height: 100px;">col</div></div><div class="col sm-6"><div class=box>col</div></div></div><p>middle</p><div class="row sm-middle"><div class="col sm-6"><div class=box style="height: 100px;">col</div></div><div class="col sm-6"><div class=box>col</div></div></div><p>bottom</p><div class="row sm-bottom"><div class="col sm-6"><div class=box style="height: 100px;">col</div></div><div class="col sm-6"><div class=box>col</div></div></div><p>bottom middle top</p><div class="row md-bottom lg-middle xl-top"><div class="col sm-6"><div class=box style="height: 100px;">col</div></div><div class="col sm-6"><div class=box>col</div></div></div><h2>Distribution</h2><p>around</p><div class="row sm-around"><div class="col sm-3"><div class=box>col</div></div><div class="col sm-3"><div class=box>col</div></div><div class="col sm-3"><div class=box>col</div></div></div><p>between</p><div class="row sm-between"><div class="col sm-3"><div class=box>col</div></div><div class="col sm-3"><div class=box>col</div></div><div class="col sm-3"><div class=box>col</div></div></div><h2>Reordering</h2><p>first</p><div class="row shrink"><div class=col><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class=col><div class=box>3</div></div><div class="col sm-first"><div class=box>4</div></div></div><p>last</p><div class="row shrink"><div class="col sm-last"><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class=col><div class=box>3</div></div><div class=col><div class=box>4</div></div></div><h2>Reversing</h2><p>reverse</p><div class="row shrink lg-reverse"><div class=col><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class=col><div class=box>3</div></div><div class=col><div class=box>4</div></div></div><h2>Display elements</h2><p>hiding and show elements</p><div class="row shrink"><div class=col><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class=col><div class=box>3</div></div><div class="col md-hide"><div class=box>|||</div></div><div class="col md-show"><div class=box>X</div></div></div></div><div class="container fluid"><h2>col custom</h2><p>up-1 up-4 up-6</p><div class="row listcol"><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div><div class=col><div class=box>col</div></div></div></div><div class=container><div class=boxfit></div></div></main><script src=https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js></script><script type=text/javascript src=main.40d561e7ac4fdad3b8f1.js></script></body><p></p></html>
+&lt;/div></pre></div><div class="container fluid"><h2>Alignment</h2><code>sm-start</code><div class="row sm-start"><div class="col sm-4"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-start">
+  &lt;div class="col sm-4">
+    &lt;div class="box">&lt;/div>
+  &lt;/div>
+&lt;/div></pre><code>sm-center</code><div class="row sm-center"><div class="col sm-4"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-center">
+  &lt;div class="col sm-4">
+    &lt;div class="box">&lt;/div>
+  &lt;/div>
+&lt;/div></pre><code>sm-end</code><div class="row sm-end"><div class="col sm-4"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-end">
+  &lt;div class="col sm-4">
+    &lt;div class="box">&lt;/div>
+  &lt;/div>
+&lt;/div></pre><code>sm-end</code> <code>md-center</code> <code>lg-start</code><div class="row sm-end md-center lg-start"><div class="col sm-4"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-end md-center lg-start">
+  &lt;div class="col sm-4">
+    &lt;div class="box">&lt;/div>
+  &lt;/div>
+&lt;/div></pre><code>sm-top</code><div class="row sm-top"><div class="col sm-6"><div class=box style="height: 100px;"></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-top">
+    &lt;div class="col sm-6">
+        &lt;div class="box" style="height: 100px;">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-6">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+&lt;/div></pre><code>sm-middle</code><div class="row sm-middle"><div class="col sm-6"><div class=box style="height: 100px;"></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-middle">
+    &lt;div class="col sm-6">
+        &lt;div class="box" style="height: 100px;">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-6">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+&lt;/div></pre><code>bottom</code><div class="row sm-bottom"><div class="col sm-6"><div class=box style="height: 100px;"></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-bottom">
+    &lt;div class="col sm-6">
+        &lt;div class="box" style="height: 100px;">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-6">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+&lt;/div></pre><code>sm-bottom</code> <code>md-middle</code> <code>lg-top</code><div class="row sm-bottom md-middle lg-top"><div class="col sm-6"><div class=box style="height: 100px;"></div></div><div class="col sm-6"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-bottom md-middle lg-top">
+    &lt;div class="col sm-6">
+        &lt;div class="box" style="height: 100px;">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-6">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+&lt;/div></pre><h2>Distribution</h2><code>sm-around</code><div class="row sm-around"><div class="col sm-3"><div class=box></div></div><div class="col sm-3"><div class=box></div></div><div class="col sm-3"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-around">
+    &lt;div class="col sm-3">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-3">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-3">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+&lt;/div></pre><code>sm-between</code><div class="row sm-between"><div class="col sm-3"><div class=box></div></div><div class="col sm-3"><div class=box></div></div><div class="col sm-3"><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row sm-between">
+    &lt;div class="col sm-3">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-3">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-3">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+&lt;/div></pre><h2>Reordering</h2><code>sm-first</code><div class="row shrink"><div class=col><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class="col sm-first"><div class=box>3</div></div></div><pre class=prettyprint>&lt;div class="row shrink">
+    &lt;div class="col">
+        &lt;div class="box">1&lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box">2&lt;/div>
+    &lt;/div>
+    &lt;div class="col sm-first">
+        &lt;div class="box">3&lt;/div>
+    &lt;/div>
+&lt;/div></pre><code>sm-last</code><div class="row shrink"><div class="col sm-last"><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class=col><div class=box>3</div></div></div><pre class=prettyprint>&lt;div class="row shrink">
+    &lt;div class="col sm-last">
+        &lt;div class="box">1&lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box">2&lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box">3&lt;/div>
+    &lt;/div>
+&lt;/div></pre><h2>Reversing</h2><code>sm-reverse</code><div class="row shrink lg-reverse"><div class=col><div class=box>1</div></div><div class=col><div class=box>2</div></div><div class=col><div class=box>3</div></div></div><pre class=prettyprint>&lt;div class="row sm-reverse">
+    &lt;div class="col">
+        &lt;div class="box">1&lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box">2&lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box">3&lt;/div>
+    &lt;/div>
+&lt;/div></pre><h2>Display elements</h2><p>hiding and show elements</p><code>md-hide</code> <code>md-show</code><div class="row shrink"><div class=col><div class=box></div></div><div class=col><div class=box></div></div><div class="col md-hide"><div class=box>|||</div></div><div class="col md-show"><div class=box>X</div></div></div><pre class=prettyprint>&lt;div class="row shrink">
+    &lt;div class="col">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box">&lt;/div>
+    &lt;/div>
+    &lt;div class="col md-hide">
+        &lt;div class="box">|||&lt;/div>
+    &lt;/div>
+    &lt;div class="col md-show">
+        &lt;div class="box">X&lt;/div>
+    &lt;/div>
+&lt;/div></pre></div><div class="container fluid"><h2>Methods</h2><p>Calculate the sizes that you indicate.</p><pre class="mb15 prettyprint">.myNameClass {
+  @include row(100px 1fr 100px);
+}</pre><div class="row myNameClass"><div class=col><div class=box></div></div><div class=col><div class=box></div></div><div class=col><div class=box></div></div></div><pre class=prettyprint>&lt;div class="row myNameClass">
+    &lt;div class="col">
+        &lt;div class="box"> &lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box"> &lt;/div>
+    &lt;/div>
+    &lt;div class="col">
+        &lt;div class="box"> &lt;/div>
+    &lt;/div>
+&lt;/div></pre><h3>fit</h3><p>Calculate the width and height that grow in proportion.</p><pre class="mb15 prettyprint">.myNameFit {
+  @include fit(273px 50px);
+}</pre><div class=row><div class=myNameFit><div class=box></div></div></div><pre class=prettyprint>&lt;div class="myNameFit">
+    &lt;div class="box">&lt;/div>
+&lt;/div></pre><h3>query</h3><p>Mixin that indicates from</p><pre class=prettyprint>.myclassFrom {
+    font-size: 12px;
+    @include from(md) {
+        font-size: 16px;
+    }
+}</pre><p>Mixin that indicates until</p><pre class=prettyprint>.myclassFrom {
+    font-size: 16px;
+    @include until(sm) {
+        font-size: 12px;
+    }
+}</pre></div></main><script src=https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js></script><script type=text/javascript src=main.40d561e7ac4fdad3b8f1.js></script></body><p></p></html>
